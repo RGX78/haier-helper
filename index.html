@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haier Asystent Serwisowy | HW80-B14959S8U1S</title>
+    <meta name="description" content="Interaktywny asystent serwisowy, kody błędów i rozwiązywanie problemów z pralką Haier HW80-B14959S8U1S.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <header class="app-header">
+        <div class="logo">
+            <h1 class="gradient-text">Haier Assistant</h1>
+            <p class="subtitle">Interaktywny Przewodnik Serwisowy HW80-B14959S8U1S</p>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Szukaj kodu lub problemu (np. E4, woda)..." autocomplete="off">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <aside class="sidebar glass-panel">
+            <div class="tabs">
+                <button class="tab-btn active" data-target="errors">Kody Błędów</button>
+                <button class="tab-btn" data-target="issues">Typowe Usterki</button>
+            </div>
+            
+            <div class="list-container custom-scrollbar" id="listContainer">
+                <!-- List items injected by JS -->
+            </div>
+        </aside>
+
+        <section class="content-area glass-panel" id="contentArea">
+            <div class="welcome-state" id="welcomeState">
+                <svg class="washer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                    <circle cx="12" cy="14" r="4"></circle>
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                </svg>
+                <h2>Witaj w asystencie napraw</h2>
+                <p>Wybierz kod błędu lub problem z listy po lewej stronie, aby rozpocząć proces diagnostyki.</p>
+            </div>
+
+            <div class="solution-state hidden" id="solutionState">
+                <div class="solution-header">
+                    <span class="badge" id="issueBadge">Kod</span>
+                    <h2 id="issueTitle">Tytuł problemu</h2>
+                </div>
+                
+                <div class="cause-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> Prawdopodobna przyczyna:</h3>
+                    <p id="issueCause">Opis przyczyny...</p>
+                </div>
+
+                <div class="steps-container">
+                    <h3>Rozwiązanie krok po kroku:</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <ul class="steps-list" id="stepsList">
+                        <!-- Steps injected by JS -->
+                    </ul>
+                </div>
+                
+                <div class="completion-message hidden" id="completionMessage">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span>Gratulacje! Przeszedłeś przez wszystkie kroki naprawcze. Jeśli problem nadal występuje, skontaktuj się z autoryzowanym serwisem Haier.</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
