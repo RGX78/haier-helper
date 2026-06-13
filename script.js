@@ -254,6 +254,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         completedSteps = 0;
         renderSteps();
+
+        // Scroll to content on mobile devices
+        if (window.innerWidth <= 900) {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
     // Render step-by-step diagnostic
