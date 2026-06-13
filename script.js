@@ -1,3 +1,41 @@
+const manuals = [
+    {
+        id: "daily-use",
+        code: "Instrukcja",
+        title: "Codzienne pranie",
+        cause: "Jak prawidłowo uruchomić cykl prania.",
+        steps: [
+            { text: "Posortuj pranie, rozdzielając je według kolorów i rodzaju materiału. Sprawdź, czy kieszenie są puste.", img: "img/laundry_load.png" },
+            { text: "Wyciągnij szufladę i dodaj odpowiednią ilość detergentu oraz płynu do płukania, po czym zamknij ją.", img: "img/detergent_drawer.png" },
+            { text: "Wybierz program na głównym panelu obracając pokrętło. Dostosuj temperaturę i wirowanie na ekranie dotykowym, następnie wciśnij Start.", img: "img/control_panel.png" }
+        ]
+    },
+    {
+        id: "clean-filter",
+        code: "Konserwacja",
+        title: "Czyszczenie filtra pompy",
+        cause: "Regularne czyszczenie zapobiega awariom odpływu.",
+        steps: [
+            { text: "Wyłącz pralkę i odłącz ją od prądu. Otwórz dolną klapkę serwisową.", img: "img/pump_filter.png" },
+            { text: "Podstaw płaski pojemnik pod rurkę spustową, aby spuścić resztkę wody." },
+            { text: "Odkręć filtr w kierunku przeciwnym do ruchu wskazówek zegara i wyczyść go pod bieżącą wodą.", img: "img/pump_filter.png" },
+            { text: "Mocno wkręć filtr z powrotem i zamknij klapkę." }
+        ]
+    },
+    {
+        id: "clean-drawer",
+        code: "Konserwacja",
+        title: "Czyszczenie szuflady na detergent",
+        cause: "Zapobiega gromadzeniu się resztek proszku i brzydkich zapachów.",
+        steps: [
+            { text: "Wyciągnij szufladę do momentu oporu.", img: "img/detergent_drawer.png" },
+            { text: "Wciśnij zwalniacz blokujący (zapadkę) i wyjmij szufladę całkowicie." },
+            { text: "Umyj szufladę dokładnie pod ciepłą, bieżącą wodą, aż znikną resztki proszku." },
+            { text: "Wsuń szufladę z powrotem na miejsce.", img: "img/detergent_drawer.png" }
+        ]
+    }
+];
+
 const errorCodes = [
     {
         id: "clrfltr",
@@ -214,7 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderList(query = '') {
         listContainer.innerHTML = '';
         
-        const sourceData = currentTab === 'errors' ? errorCodes : commonIssues;
+        let sourceData = errorCodes;
+        if (currentTab === 'issues') sourceData = commonIssues;
+        if (currentTab === 'manuals') sourceData = manuals;
+        
         const filteredData = sourceData.filter(item => 
             item.title.toLowerCase().includes(query.toLowerCase()) || 
             item.code.toLowerCase().includes(query.toLowerCase()) ||
@@ -272,6 +313,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const isCompleted = index < completedSteps;
             const isActive = index === completedSteps;
             
+            const stepText = typeof step === 'string' ? step : step.text;
+            const stepImg = (typeof step === 'object' && step.img) ? `<img src="${step.img}" class="step-image" alt="Ilustracja kroku" loading="lazy">` : '';
+
             const li = document.createElement('li');
             li.className = `step-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`;
             
@@ -280,7 +324,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${isCompleted ? '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>' : index + 1}
                 </div>
                 <div class="step-content">
-                    <p class="step-text">${step}</p>
+                    <p class="step-text">${stepText}</p>
+                    ${stepImg}
                     ${isActive ? '<button class="step-action-btn">Zrobione, dalej</button>' : ''}
                 </div>
             `;

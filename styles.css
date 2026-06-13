@@ -427,6 +427,15 @@ body {
     margin-bottom: 1rem;
 }
 
+.step-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-glass);
+    display: block;
+}
+
 .step-action-btn {
     background: transparent;
     border: 1px solid var(--accent-primary);
